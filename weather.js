@@ -34,6 +34,9 @@ const weather = location => {
                         printError(error);
                     }
                 });
+            } else if (res.statusCode === 401) {
+                const invalidKey = new Error(`Please enter a valid API Key. (${http.STATUS_CODES[res.statusCode]})`);
+                printError(invalidKey);
             } else {
                 const statusCodeError = new Error(`City not found. (${res.statusCode})`);
                 printError(statusCodeError);
